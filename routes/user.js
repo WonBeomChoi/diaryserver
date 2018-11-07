@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 /* GET home page. */
-router.all('/', function(req, res, next) {
+router.post('/', function(req, res, next) {
   console.log(req.body);
   if(req.body !== {}) {
     //아이디 검사하는 알고리즘

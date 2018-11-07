@@ -5,11 +5,9 @@ var fs = require('fs');
 router.get('/', function(req, res, next) {
   console.log(req.query);
   var json = require('../babo/'+req.query.id+'.json');
-  console.log('asf');
-  var txt = json['data'].filter(function(item){
-    return item.sender==req.query.id&&item.receiver==req.query.receiver
-          ||item.sender==req.query.receiver&&item.receiver==req.query.id;
-  })
+  var txt = JSON.stringify(json['friend']);
+  console.log(txt);
   res.send(txt);
+  
 });
 module.exports = router;

@@ -10,8 +10,9 @@ var sendJesonRouter = require('./routes/sendJson');
 var receiveJsonRouter = require('./routes/receive');
 var userJsonRouter = require('./routes/user');
 var receiveUserRouter = require('./routes/receiveUserData');
-var dateRouter = require('./routes/getdate')
-
+var dateRouter = require('./routes/getdate');
+var senderSearch = require('./routes/senderSearch');
+var getFriends = require('./routes/getFriends');
 var app = express();
 
 app.use(logger('dev'));
@@ -27,4 +28,6 @@ app.use('/receiveJson', receiveJsonRouter);
 app.use('/user', userJsonRouter);
 app.use('/receiveUser',receiveUserRouter);
 app.use('/getDate',dateRouter);
+app.use('/senderSearch', senderSearch);
+app.use('/getFriends',getFriends);
 module.exports = app;

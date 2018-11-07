@@ -3,24 +3,31 @@ var router = express.Router();
 var fs = require('fs');
 /* GET home page. */
 router.all('/', function(req, res, next) {
+  var date = new Date();
+  var day = date.getDate();
+  var month = date.getMonth();
+  var year = date.getFullYear();
   console.log(req.body);
   if(req.body !== {}) {
-    //아이디 검사하는 알고리즘
-    //아이디 별로 구분해서 넣어줘야대... 어떠카죠...? ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
     
-    var message = JSON.stringify(req.body);
+    // var message = JSON.stringify(req.body);
     try{
       var json = require(`../babo/${req.body.sender}.json`);
       console.log("있당");
       json['data'].push(req.body);
       console.log(json);
-      json['friend'].push(req.body.receiver)
       json = JSON.stringify(json);
       fs.writeFile(`babo/${req.body.sender}.json`,json, (err) => {
         if(err) throw err;
         console.log("넹");
         
       });
+      var json = require(`../babo/${req.body.receiver}.json`);
+      json['data'].push(req.body);
+      json = JSON.stringify(json);
+      fs.writeFile(`babo/${req.body.receiver}.json`,json,(err)=>{
+        if(err) throw err;
+      })
     }
     catch{
       // var json = require(`../babo/${}`)
