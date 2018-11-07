@@ -10,6 +10,7 @@ router.get('/', function(req, res, next) {
     return item.sender==req.query.id&&item.receiver==req.query.receiver
           ||item.sender==req.query.receiver&&item.receiver==req.query.id;
   })
+  
   res.send(txt);
 });
 module.exports = router;

@@ -15,8 +15,17 @@ router.all('/', function(req, res, next) {
       var json = require(`../babo/${req.body.sender}.json`);
       console.log("있당");
       json['data'].push(req.body);
-      console.log(json);
+      // console.log(json);
+      for(var i=0; i<=json.friend.length; i++){
+        console.log(i);
+        if(json.friend[i].id == req.body.receiver){
+          console.log("1111");
+          json.friend[i].flag = "0";
+          break;
+        }
+      }
       json = JSON.stringify(json);
+      
       fs.writeFile(`babo/${req.body.sender}.json`,json, (err) => {
         if(err) throw err;
         console.log("넹");
@@ -24,6 +33,13 @@ router.all('/', function(req, res, next) {
       });
       var json = require(`../babo/${req.body.receiver}.json`);
       json['data'].push(req.body);
+      for(var i=0; i<=json.friend.length; i++){
+        if(json.friend[i].id == req.body.sender){
+          console.log("2222");
+          json.friend[i].flag = "1";
+          break;
+        }
+      }
       json = JSON.stringify(json);
       fs.writeFile(`babo/${req.body.receiver}.json`,json,(err)=>{
         if(err) throw err;
