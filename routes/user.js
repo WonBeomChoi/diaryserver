@@ -12,7 +12,7 @@ router.post('/', function(req, res, next) {
       var json = require(`../babo/${req.body.id}.json`);
       console.log("있징됴")
     }
-    catch{
+    catch(err){
       var json = require(`../babo/default.json`);
       json['user'].push(req.body);
       json=JSON.stringify(json);

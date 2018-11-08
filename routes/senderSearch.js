@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
   var txt = req.query.receiver+'유저가 있당';
   res.send(txt);
   }
-  catch{
+  catch(err){
       res.send('그런사람 없습니다.');
   }
 });
